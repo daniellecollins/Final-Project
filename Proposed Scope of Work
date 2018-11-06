@@ -10,7 +10,7 @@ The current diagnosis of Alzheimer’s disease comes after irreversible brain da
 Section 2: Datasets.
 A detailed description of data and the type, format.  Where possible please specify URL.  Description of unit test.
 
-The dataset I have chosen to use for this project is from the Allen Brain Atlas Aging, Dementia, and TBI Study.  All of the information is downloaded in tabular form as comma-separated values (csv) files.  I am using the de-identified clinical information table that includes Alzheimer’s disease, dementia, and TBI diagnoses for all donors included in the study.  The table I am correlating this data with is the normalized and unnormalized gene-level FPKM values for all samples. 
+The dataset I have chosen to use for this project is from the Allen Brain Atlas Aging, Dementia, and TBI Study.  All of the information is downloaded in tabular form as comma-separated values (csv) files.  I am using the de-identified clinical information table that includes Alzheimer’s disease, dementia, and TBI diagnoses for all donors included in the study.  The table I am correlating this data with is the normalized gene-level FPKM values for all samples. 
 
 Proposed Analysis: 
 Description of the proposed analysis including libraries.  The analysis may be conducted with some real-time interactivity. 
