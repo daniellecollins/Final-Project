@@ -5,12 +5,12 @@ TRGN 510 Final Project: Proposed Scope of Work
 Section 1: Description.
 A 3-5 sentence description of the project deliverable.
 
-The current diagnosis of Alzheimer’s disease comes after irreversible brain damage and mental decline has occurred.  However, what if we could restructure the detection structure to elicit earlier diagnosis before the onset of symptoms?  For this project, I hope to explore Alzheimer’s data and conduct a bioinformatic analysis of a major dataset to draw correlations among patients inflicted with the disease.  This will include both supervised (differential analysis via t-tests) and unsupervised (hierarchical clustering and principal components analysis) analysis. 
+The current diagnosis of Alzheimer’s disease comes after irreversible brain damage and mental decline has occurred.  However, what if we could restructure the detection structure to elicit earlier diagnosis before the onset of symptoms?  For this project, I hope to explore Alzheimer’s data and conduct a bioinformatic analysis of a major dataset to draw correlations among patients inflicted with the disease.  This will include both supervised (differential analysis via t-tests) and unsupervised (hierarchical clustering and principal components analysis) analysis.  Ultimately, I hope to link clinical parameters from the clinical data table with the gene expression table and draw analyses from this combination. 
 
 Section 2: Datasets.
 A detailed description of data and the type, format.  Where possible please specify URL.  Description of unit test.
 
-The dataset I have chosen to use for this project is the NIAGADS GenomicsDB which provides access to NIAGADS summary statistics datasets for Alzheimer’s Disease and related neuropathology’s (https://www.niagads.org/genomics/).  This dataset contains information pertaining to chromosome, position, marker name, effect allele, non-effect allele, beta, SE, and P-value.  There are two separate datasets, the first being only stage 1 data and the second being combined stage 1 and 2 data.  For the purposes of this project I will be using the combined dataset; the datasets are located within txt files that I have downloaded.  There is an additional README file that explains the data overview and the variables.  The folder is located within my home directory and titled IGAP_summary_statistics. 
+The dataset I have chosen to use for this project is from the Allen Brain Atlas Aging, Dementia, and TBI Study.  All of the information is downloaded in tabular form as comma-separated values (csv) files.  I am using the de-identified clinical information table that includes Alzheimer’s disease, dementia, and TBI diagnoses for all donors included in the study.  The table I am correlating this data with is the normalized and unnormalized gene-level FPKM values for all samples. 
 
 Proposed Analysis: 
 Description of the proposed analysis including libraries.  The analysis may be conducted with some real-time interactivity. 
@@ -30,3 +30,13 @@ User Interface.
 Wire diagram, powerpoint, or other illustration of the anticipated user interface and functionality. 
 
 The user interface for my project will be an interactive webpage using R shiny that will be published to the internet.  
+
+Notes from Dr. Craig.
+
+Link clinical parameters from the clinical table and the gene expression tables.  
+Gene expression measure: FPKM
+50000: by gene (exons) or hundred thousand: transcript
+PCA of FPKM: choose clinical parameters 
+	Driver of variation: areas of the brain, age
+What are the two groups? 
+APOE4: two SNPs are the biggest drivers genetically 
