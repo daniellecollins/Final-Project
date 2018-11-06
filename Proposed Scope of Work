@@ -1,13 +1,13 @@
 Danielle Collins
 November 6, 2018
-#TRGN 510 Final Project: Proposed Scope of Work
+TRGN 510 Final Project: Proposed Scope of Work
 
-##Section 1: Description.
+Section 1: Description.
 A 3-5 sentence description of the project deliverable.
 
 The current diagnosis of Alzheimer’s disease comes after irreversible brain damage and mental decline has occurred.  However, what if we could restructure the detection structure to elicit earlier diagnosis before the onset of symptoms?  For this project, I hope to explore Alzheimer’s data and conduct a bioinformatic analysis of a major dataset to draw correlations among patients inflicted with the disease.  This will include both supervised (differential analysis via t-tests) and unsupervised (hierarchical clustering and principal components analysis) analysis. 
 
-##Section 2: Datasets.
+Section 2: Datasets.
 A detailed description of data and the type, format.  Where possible please specify URL.  Description of unit test.
 
 The dataset I have chosen to use for this project is the NIAGADS GenomicsDB which provides access to NIAGADS summary statistics datasets for Alzheimer’s Disease and related neuropathology’s (https://www.niagads.org/genomics/).  This dataset contains information pertaining to chromosome, position, marker name, effect allele, non-effect allele, beta, SE, and P-value.  There are two separate datasets, the first being only stage 1 data and the second being combined stage 1 and 2 data.  For the purposes of this project I will be using the combined dataset; the datasets are located within txt files that I have downloaded.  There is an additional README file that explains the data overview and the variables.  The folder is located within my home directory and titled IGAP_summary_statistics. 
