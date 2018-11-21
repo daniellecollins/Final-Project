@@ -21,8 +21,10 @@ Proposed Timeline & Major milestones (or segments):
 Details of expected major milestones.
 
 Milestone 1 (11/13/18): By the first milestone I would like to have explored all the data in its entirety, loaded it into R, and started experimenting with different analyses I can perform.  This way I will have a broad idea of which are the most important analyses to include in the project.
-Milestone 2 (11/20/18): By the second milestone I will have not only decided which analyses that are going to be incorporated, but also successfully implemented them with my dataset. 
-Milestone 3 (11/27/18): By the third milestone I will have the bulk computing of the data completed and work on the aesthetic components of the webpage.  I will decide if there needs to be textual explanations and how to structure the graphs in a understandable manner to the user. 
+Milestone 2 (11/20/18): By the second milestone I will have not only decided which analyses that are going to be incorporated (both unsupervised [pca] and supervised [t-test]), but also successfully streamline and merge the fpkm dataset with the donor information. 
+Milestone 3 (11/27/18): For the third milestone I will have completed an unsupervised analysis that finds issues impacting all genes.  This includes making a histogram of the data, running a pca, and making a shiny plot where I can color for a variable based on donor information parameters. I will also have completed a supervised analysis that entails differential analysis. I will either use the tools of DeSEQ2/EdgeR to create a T-test or Mann-Whitney plot. From this, I can make a heatmap of the top 50 to 500 genes on the fpkms. I will put the differential analysis on a shiny page alongside text describing what the analyses mean.
+
+By the third milestone I will have the bulk computing of the data completed and work on the aesthetic components of the webpage.  I will decide if there needs to be textual explanations and how to structure the graphs in a understandable manner to the user. 
 Beta Release (11/27/18): Have a functional working copy of the assignment alongside with an issue report and QA. 
 Final Project Delivery (12/05/18) @11:59PM: Assignment received
 
