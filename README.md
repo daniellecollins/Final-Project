@@ -26,7 +26,7 @@ genes <- read.csv('rows-genes.csv',header = TRUE, sep = ",",  quote = "\"", dec 
 complete_data <- read.csv('complete_data.csv',header = TRUE, sep = ",", quote = "", dec = ".", fill = TRUE, row.names = 1)  
 ```
 
-### Remove Commas Within Complete_Data File to Standardize Columns
+### Preparation of Raw Data: Remove Commas Within Complete_Data File to Standardize Column Placement 
 ```
 complete_data_dc_final <- read.csv('complete_data_dc_final.txt',header = TRUE, sep = "\t", quote = "", dec = ".", fill = TRUE)
 ```
