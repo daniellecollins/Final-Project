@@ -2,13 +2,7 @@ library(shiny)
 library(plotly)
 library(ggplot2)
 
-#setwd("~daniellecollins/TRGN 510 Final Project") 
-
 combined_csv <- read.csv('combined_csv.csv',header = TRUE, sep = ",",  quote = "\"", dec = ".", fill = TRUE)
-
-#combined <- read.csv('combined.csv',header = TRUE, sep = ",",  quote = "\"", dec = ".", fill = TRUE)
-
-#headerNames=colnames(combined)
 
 ui <- fluidPage(
   plotlyOutput("plot"),
@@ -20,10 +14,8 @@ ui <- fluidPage(
   )
 )
 
-
 server <- function(input, output) {
   
-  # renderPlotly() 
   output$plot <- renderPlotly({
     
     plot_ly(combined_csv, x = ~PC1, y = ~PC2, z = ~PC3, color = ~get(input$variables), colors = c('#BF382A', '#0C4B8E')) %>% 
