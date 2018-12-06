@@ -1,0 +1,38 @@
+library(shiny)
+library(plotly)
+library(ggplot2)
+
+#setwd("~daniellecollins/TRGN 510 Final Project") 
+
+combined_csv <- read.csv('combined_csv.csv',header = TRUE, sep = ",",  quote = "\"", dec = ".", fill = TRUE)
+
+#combined <- read.csv('combined.csv',header = TRUE, sep = ",",  quote = "\"", dec = ".", fill = TRUE)
+
+#headerNames=colnames(combined)
+
+ui <- fluidPage(
+  plotlyOutput("plot"),
+  
+  titlePanel("PCA of RNA-Seq within the Aging, Dementia, and TBI Study"),
+  
+  sidebarPanel(
+    selectInput('variables', 'Variables', c("Age" = "age", "Sex" = "sex", "Apo E4 Allele" = "apo_e4_allele", "Years of Education" = "education_years", "Age At First TBI" = "age_at_first_tbi", "DSM IV Clinical Diagnosis" = "dsm_iv_clinical_diagnosis", "NINCDS ARDA Diagnosis" = "nincds_arda_diagnosis", "Demented Actions" = "act_demented", "Structure Name" = "structure_name", "Hemisphere" = "hemisphere"),"structure_name")
+  )
+)
+
+
+server <- function(input, output) {
+  
+  # renderPlotly() 
+  output$plot <- renderPlotly({
+    
+    plot_ly(combined_csv, x = ~PC1, y = ~PC2, z = ~PC3, color = ~get(input$variables), colors = c('#BF382A', '#0C4B8E')) %>% 
+      add_markers() %>% 
+      layout(scene = list(xaxis = list(title = 'PC1'),
+                          yaxis = list(title = 'PC2'),
+                          zaxis = list(title = 'PC3')))
+  })
+  
+}
+
+shinyApp(ui, server)
