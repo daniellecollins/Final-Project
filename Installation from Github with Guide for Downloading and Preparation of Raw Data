@@ -1,0 +1,9 @@
+If you are interested in getting this code to run on your individal computer, there are a few steps that must be followed to download and prepare the data:
+
+Primarily, you must visit the Allen Brain Atlas Index for the Age, Dementia, and TBI Study to download the csv files necessary for the PCA analysis.  The url for the site is: http://aging.brain-map.org/download/index. From this homepage, it is essential to download the following files: De-identified clinical information (including Alzheimer’s disease, dementia, and TBI diagnoses) for all donors included in the study as well as both normalized (as displayed in the RNA-Seq page heatmap) and unnormalized gene-level FPKM values for all samples (zip).
+
+Once the csv files have been downloaded into the home directory, you are ready to run the R markdown code.  I did happen to prepare raw data by combining the donor information csv with the sample csv to make sure the RNA Sequencing Profile ID was matched to each of the 107 donors. 
+
+With this data modification, you are ready to the run the R Markdown Script. This script is essential to run because the PCA component merges two tables to create a comprehensive dataframe containing donor information (clinical variables) and principal component analyses.  This combined table must be prepared as an excel table or csv document for the R Shiny App.
+
+The final component of data preparation and downloading is to load in the combined csv into the shiny app so the PCA analysis can be completed.  
