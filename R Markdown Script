@@ -1,0 +1,108 @@
+---
+title: "Final Project Script"
+author: "Danielle Collins"
+date: "11/13/2018"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library('RColorBrewer')
+library(dplyr)
+library(plotly)
+
+setwd("~daniellecollins/TRGN 510 Final Project")
+
+samples <- read.csv('columns-samples.csv',header = TRUE, sep = ",",  quote = "\"", dec = ".", fill = TRUE, row.names = 1)
+
+donor_information <- read.csv('DonorInformation.csv',header = TRUE, sep = ",", quote = "", dec = ".", fill = TRUE, row.names = 1)
+
+normalized_fpkm <- read.csv('fpkm_table_normalized.csv',header = TRUE, sep = ",",  quote = "\"", dec = ".", fill = TRUE, row.names = 1)
+
+genes <- read.csv('rows-genes.csv',header = TRUE, sep = ",",  quote = "\"", dec = ".", fill = TRUE)
+
+complete_data <- read.csv('complete_data.csv',header = TRUE, sep = ",", quote = "", dec = ".", fill = TRUE, row.names = 1)
+
+complete_data_dc_final <- read.csv('complete_data_dc_final.txt',header = TRUE, sep = "\t", quote = "", dec = ".", fill = TRUE)
+
+```
+
+#PCA Analysis 
+```{r}
+library(tibble)
+library(plotly)
+library(dplyr)
+setwd("~daniellecollins/TRGN 510 Final Project")
+
+#samples_2 <- rownames_to_column(samples, var = "rnaseq_profile_id")
+
+fpkm_log<-log2(normalized_fpkm+.000001)
+
+pca <- prcomp(fpkm_log)
+plot(pca, type = "l")
+
+std_dev<-pca$sdev 
+pr_var <- std_dev^2
+pr_var[1:10]
+prop_varex <- pr_var/sum(pr_var)
+plot(prop_varex, xlab = "Principal Component", ylab = "Proportion of Variance Explained", type = "b")
+
+pcadf<-data.frame(pca$rotation)
+
+#plot_ly(data = pcadf, x = ~PC1, y = ~PC2, z = ~PC3, text = rownames(pcadf))
+plot_ly(pcadf, x = ~PC1, y = ~PC2, z = ~PC3, color = ~PC4, colors = c('#BF382A', '#0C4B8E')) %>% 
+add_markers() %>% 
+   layout(scene = list(xaxis = list(title = 'PC1'),
+ yaxis = list(title = 'PC2'),
+ zaxis = list(title = 'PC3')))
+
+complete_data$rnaseq_profile_id<-rownames(complete_data)
+pca_row<-data.frame(pcadf$rnaseq_profile_id<-rownames(pcadf))
+pca_row$PC1<-pcadf$PC1
+pca_row$PC2<-pcadf$PC2
+pca_row$PC3<-pcadf$PC3
+colnames(pca_row)[1] <- "join_column_rnaseq"
+#pca_row$donor_id<-data.frame(pcadf$rnaseq_profile_id<-rownames(pcadf))
+
+x<-complete_data_dc_final
+y<-pca_row
+
+combined<-inner_join(complete_data_dc_final,pca_row,a, by = "join_column_rnaseq")
+
+plot_ly(combined, x = ~PC1, y = ~PC2, z = ~PC3, color = ~age, colors = c('#BF382A', '#0C4B8E')) %>% 
+add_markers() %>% 
+   layout(scene = list(xaxis = list(title = 'PC1'),
+ yaxis = list(title = 'PC2'),
+ zaxis = list(title = 'PC3')))
+```
+
+#Correlation Analysis (Heatmap)
+```{r}
+library(dplyr)
+setwd("~daniellecollins/TRGN 510 Final Project")
+
+plot(normalized_fpkm$X488395315,normalized_fpkm$X496100277)
+
+d <- density(normalized_fpkm$X488395315) # returns the density data
+plot(d) # plots the results
+ 
+d <- density(complete_data$rnaseq_profile_id) # returns the density data
+plot(d) # plots the results
+ 
+plot(density(log2(normalized_fpkm$X488395315[(normalized_fpkm$X496100277>0)]))) 
+
+plot(log2(normalized_fpkm$X488395315[(normalized_fpkm$X488395315>0 |normalized_fpkm$X496100277>0)]),log2(normalized_fpkm$X496100277[(normalized_fpkm$X488395315>0 |normalized_fpkm$X496100277>0 )]))
+
+library(ggplot2)
+library(reshape2)
+
+normalized_fpkm_correlation<-data.matrix(normalized_fpkm)
+normalized_fpkm_correlation[!is.na(normalized_fpkm_correlation) & !is.infinite(normalized_fpkm_correlation) & !is.nan(normalized_fpkm_correlation)]
+
+corr<-cor(normalized_fpkm_correlation) #Error in cor(normalized_fpkm) : 'x' must be numeric
+melted_corr <- melt(corr)
+p<-ggplot(melted_corr , aes(x = Var1, y = Var2)) + geom_raster(aes(fill = value)) + scale_fill_gradient2(low="navy", mid="white", high="red") + theme( plot.title = element_blank(),axis.text.x = element_blank(), axis.text.y = element_blank(), axis.title.y = element_blank(), axis.title.x = element_blank())
+ggplotly(p)
+
+#heatmap(normalized_fpkm_correlation)
+```
